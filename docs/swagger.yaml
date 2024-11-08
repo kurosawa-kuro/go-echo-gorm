@@ -1,0 +1,161 @@
+basePath: /
+definitions:
+  main.Micropost:
+    description: This is a sample micropost server.
+    properties:
+      id:
+        type: integer
+      title:
+        type: string
+    type: object
+host: localhost:8080
+info:
+  contact: {}
+  description: This is a sample micropost server.
+  title: Micropost API
+  version: "1.0"
+paths:
+  /microposts:
+    get:
+      description: Get a list of all microposts
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/main.Micropost'
+            type: array
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Get all microposts
+      tags:
+      - microposts
+    post:
+      consumes:
+      - application/json
+      description: Create a new micropost with the provided title
+      parameters:
+      - description: Micropost object
+        in: body
+        name: micropost
+        required: true
+        schema:
+          $ref: '#/definitions/main.Micropost'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/main.Micropost'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Create a new micropost
+      tags:
+      - microposts
+  /microposts/{id}:
+    delete:
+      description: Delete a micropost by its ID
+      parameters:
+      - description: Micropost ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      responses:
+        "204":
+          description: No Content
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Delete a micropost
+      tags:
+      - microposts
+    get:
+      description: Get a micropost by its ID
+      parameters:
+      - description: Micropost ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/main.Micropost'
+        "404":
+          description: Not Found
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Get a micropost by ID
+      tags:
+      - microposts
+    put:
+      consumes:
+      - application/json
+      description: Update a micropost with the provided title
+      parameters:
+      - description: Micropost ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: Micropost object
+        in: body
+        name: micropost
+        required: true
+        schema:
+          $ref: '#/definitions/main.Micropost'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/main.Micropost'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Update a micropost
+      tags:
+      - microposts
+swagger: "2.0"
