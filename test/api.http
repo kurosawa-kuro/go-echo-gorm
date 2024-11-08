@@ -1,0 +1,26 @@
+@baseUrl = http://localhost:8080
+
+### マイクロポスト一覧を取得
+GET {{baseUrl}}/microposts
+
+### 特定のマイクロポストを取得
+GET {{baseUrl}}/microposts/1
+
+### 新規マイクロポストを作成
+POST {{baseUrl}}/microposts
+Content-Type: application/json
+
+{
+    "title": "新しいマイクロポスト"
+}
+
+### マイクロポストを更新
+PUT {{baseUrl}}/microposts/1
+Content-Type: application/json
+
+{
+    "title": "更新されたマイクロポスト"
+}
+
+### マイクロポストを削除
+DELETE {{baseUrl}}/microposts/1 
