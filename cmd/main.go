@@ -10,6 +10,7 @@ import (
 	_ "go-echo-gorm/docs" // swagger docs
 
 	"github.com/labstack/echo/v4"
+	"github.com/labstack/echo/v4/middleware"
 	echoSwagger "github.com/swaggo/echo-swagger"
 	"gorm.io/gorm"
 )
@@ -142,10 +143,11 @@ func main() {
 		log.Fatal("Failed to connect to database:", err)
 	}
 
-	// マイグレ��ション
+	// マイグレーション
 	db.AutoMigrate(&Micropost{})
 
 	e := echo.New()
+	e.Use(middleware.Logger())
 
 	// Swagger UIのエンドポイントを追加
 	e.GET("/swagger/*", echoSwagger.WrapHandler)
