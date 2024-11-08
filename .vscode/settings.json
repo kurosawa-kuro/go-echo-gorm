@@ -3,6 +3,10 @@
         {
             "filePath": "api.http",
             "group": "Default"
+        },
+        {
+            "filePath": "test\\api.http",
+            "group": "Default"
         }
     ]
 }
