@@ -10,7 +10,7 @@ import (
 type Config struct {
 	Environment string
 	Port        string
-	// 他の設定項目をここに追加
+	DatabaseURL string
 }
 
 func Load() (*Config, error) {
@@ -26,5 +26,6 @@ func Load() (*Config, error) {
 	return &Config{
 		Environment: env,
 		Port:        os.Getenv("PORT"),
+		DatabaseURL: os.Getenv("DATABASE_URL"),
 	}, nil
 }
